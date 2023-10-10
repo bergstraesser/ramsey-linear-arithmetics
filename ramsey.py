@@ -392,6 +392,8 @@ def get_variables(f: ExprRef):
 
 def is_mondec(f: ExprRef):
     vars = get_variables(f)
+    if len(vars) < 2:
+        return True
     u, v = [], []
     for i in range(len(vars)):
         if vars[i].sort_kind() == Z3_INT_SORT:
@@ -420,6 +422,8 @@ def is_mondec(f: ExprRef):
 def mondec_analysis(f: ExprRef):
     start_time = time.time()
     vars = get_variables(f)
+    if len(vars) < 2:
+        return True, None, None
     u, v = [], []
     for i in range(len(vars)):
         if vars[i].sort_kind() == Z3_INT_SORT:

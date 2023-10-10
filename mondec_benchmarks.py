@@ -67,7 +67,10 @@ def output(f: ExprRef):
     mondec, not_sim, not_sim_elim = mondec_analysis(f)
     print("Mondec: %s" % mondec)
     print("Time total: %s sec" % (time.time() - start_time))
-    print("#variables input: %s" % len(get_variables(not_sim)))
-    print("#atoms input: %s" % len(get_atoms(not_sim)))
-    print("#variables output: %s" % len(get_variables(not_sim_elim)))
-    print("#atoms output: %s" % len(get_atoms(not_sim_elim)))
+    if not_sim is None:
+        print("Trivially decomposable")
+    else:
+        print("#variables input: %s" % len(get_variables(not_sim)))
+        print("#atoms input: %s" % len(get_atoms(not_sim)))
+        print("#variables output: %s" % len(get_variables(not_sim_elim)))
+        print("#atoms output: %s" % len(get_atoms(not_sim_elim)))
